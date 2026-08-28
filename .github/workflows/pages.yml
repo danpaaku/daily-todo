@@ -23,7 +23,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+          registry-url: https://registry.npmjs.org
+      - name: Install
+        run: npm ci --registry https://registry.npmjs.org
+        env:
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
       - run: npm run build
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
